@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Radiant Star Education Centre — Website
 
-## Getting Started
+Next.js + Tailwind CSS marketing homepage for **Radiant Star Education Centre** (Manipur). Sections cover hero, academics, board results, facilities, gallery, notices, documents, and admissions CTA.
 
-First, run the development server:
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Content you will replace later
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Copy & stats:** Board result numbers, topper names, notice text, and contact details are placeholders.
+- **Hero images:** The header cycles every 2s through five photos in `public/`: `campus-hero.png`, `campus-assembly.png`, `campus-hero-slide-building.png`, `campus-hero-peace-banner.png`, `campus-hero-wide-lawn.png`. Edit `HERO_SLIDES` in `components/home/HeroSection.tsx` to add/remove or reorder.
+- **Gallery:** Real photos live in `public/gallery/` (`campus-tug-of-war.png`, `campus-computer-lab.png`, `campus-01.png`). Add files there and extend `GALLERY_ITEMS` in `components/home/GalleryPreviewSection.tsx`.
+- **PDF downloads:** Register new files in `lib/site-documents.ts` and `components/home/DocumentsSection.tsx`. Current files in `public/documents/`:
+  - `fee-structure-2025-26.pdf`
+  - `academic-calendar-2026-27.pdf`
+  - `management-committee.pdf`
+  - `noc.pdf`
+  - `water-sanitary-certificate.pdf`
+  - `pta.pdf`
+  - `fire-safety-2026.pdf`
 
-## Learn More
+## Theme
 
-To learn more about Next.js, take a look at the following resources:
+- **Page background:** Soft blue-grey (`--background` in `app/globals.css`) instead of harsh white for easier long reading.
+- **Panels / cards:** Slightly lighter `--surface` for header, footer, and card chrome.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- [Next.js](https://nextjs.org) App Router
+- [Tailwind CSS](https://tailwindcss.com) v4
+- [Framer Motion](https://www.framer.com/motion/) (scroll reveals + hero motion)
+- [Lucide](https://lucide.dev) icons
 
-## Deploy on Vercel
+## Build
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm run build
+npm start
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+If you see a Turbopack warning about multiple `package-lock.json` files, remove or relocate the extra lockfile outside this project, or follow the linked Next.js docs for `turbopack.root`.
