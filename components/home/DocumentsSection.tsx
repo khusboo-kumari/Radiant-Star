@@ -1,23 +1,31 @@
 "use client";
 
 import {
+  Award,
   Building2,
   CalendarDays,
   Droplets,
   FileDown,
   Flame,
+  GraduationCap,
   Scale,
+  ScrollText,
+  ShieldCheck,
   Users,
 } from "lucide-react";
 import { FadeInWhenVisible } from "@/components/motion/FadeInWhenVisible";
 import { SlideInWhenVisible } from "@/components/motion/SlideInWhenVisible";
 import {
   ACADEMIC_CALENDAR_2026_27_PDF,
+  BUILDING_SAFETY_CERTIFICATE_2026_PNG,
+  CBSE_AFFILIATION_EXTENSION_2022_27_PNG,
   FEE_STRUCTURE_2025_26_PDF,
   FIRE_SAFETY_2026_PDF,
+  GOVERNMENT_RECOGNITION_ORDER_2004_PNG,
   MANAGEMENT_COMMITTEE_PDF,
   NOC_PDF,
   PTA_PDF,
+  REGISTRATION_CERTIFICATE_MSR_1992_PNG,
   WATER_SANITARY_CERTIFICATE_PDF,
 } from "@/lib/site-documents";
 
@@ -45,7 +53,7 @@ const CARD_BLUE_VARIANTS = [
  * Why: Schools must surface fee, calendar, PTA, and statutory certificates in one trustworthy grid.
  * What: Single-row horizontal document cards with blue shades, left/right slide-in animation, icon, copy, and download CTA.
  * Where: Homepage `#documents`.
- * When: Cards animate on scroll (once); add entries when new PDFs are added under `public/documents/` and `lib/site-documents.ts`.
+ * When: Cards animate on scroll (once); add entries when new PDFs or scans are added under `public/documents/` and `lib/site-documents.ts`.
  * Who: Parents, auditors, and admin staff.
  * How: Client component; `SlideInWhenVisible` for directional entrance; `CARD_BLUE_VARIANTS` for variety; Framer Motion respects reduced motion.
  */
@@ -107,6 +115,42 @@ const DOCUMENTS: DocumentItem[] = [
     href: FIRE_SAFETY_2026_PDF,
     cta: "Download PDF",
   },
+  {
+    id: "registration-msr",
+    title: "Certificate of registration (1992)",
+    description:
+      "Society registration under M.S.R. Act, 1989. Regd. No. 2475 / Imphal District (duplicate on file).",
+    icon: ScrollText,
+    href: REGISTRATION_CERTIFICATE_MSR_1992_PNG,
+    cta: "Download scan",
+  },
+  {
+    id: "building-safety",
+    title: "Building safety certificate (2026)",
+    description:
+      "P.W.D. inspection certifying the institutional building safe for educational use (CBSE & state recognition refs on document).",
+    icon: ShieldCheck,
+    href: BUILDING_SAFETY_CERTIFICATE_2026_PNG,
+    cta: "Download scan",
+  },
+  {
+    id: "recognition-order",
+    title: "Government recognition order (2004)",
+    description:
+      "Director of Education (S) order granting provisional recognition (Nursery to VII) with conditions as stated.",
+    icon: Award,
+    href: GOVERNMENT_RECOGNITION_ORDER_2004_PNG,
+    cta: "Download scan",
+  },
+  {
+    id: "cbse-extension",
+    title: "CBSE affiliation extension",
+    description:
+      "SARAS letter: extension of general affiliation up to Senior Secondary (Affiliation No. 1230038, School No. 35305, period on letter).",
+    icon: GraduationCap,
+    href: CBSE_AFFILIATION_EXTENSION_2022_27_PNG,
+    cta: "Download scan",
+  },
 ];
 
 export function DocumentsSection() {
@@ -129,7 +173,7 @@ export function DocumentsSection() {
               Download official school documents
             </h2>
             <p className="mt-4 text-base leading-relaxed text-slate-600">
-              Below are the latest PDFs on file. To add more later, place them in{" "}
+              Below are the latest PDFs and official document scans on file. To add more later, place them in{" "}
               <code className="rounded bg-surface px-1.5 py-0.5 text-sm ring-1 ring-slate-300/70">
                 public/documents
               </code>{" "}

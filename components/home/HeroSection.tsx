@@ -141,6 +141,11 @@ export function HeroSection() {
           </dl>
         </div>
 
+        {/*
+         * Why: Weekly glance card is optional; hidden until real calendar content is available.
+         * Restore: Uncomment this block to show the glass "This week at a glance" widget beside hero copy.
+         */}
+        {/*
         <div className="relative mx-auto w-full max-w-md lg:mx-0 lg:max-w-sm">
           <div className="relative overflow-hidden rounded-3xl border border-cyan-100/55 bg-gradient-to-br from-cyan-200/20 via-sky-200/12 to-blue-200/16 p-5 shadow-[0_18px_50px_-20px_rgba(56,189,248,0.55)] backdrop-blur-xl">
             <div className="pointer-events-none absolute -left-10 -top-10 h-28 w-28 rounded-full bg-cyan-200/30 blur-2xl" />
@@ -174,6 +179,7 @@ export function HeroSection() {
             </p>
           </div>
         </div>
+        */}
       </div>
     </section>
   );
