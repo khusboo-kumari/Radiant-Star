@@ -58,11 +58,11 @@ const TOPPERS_2025: TopperProfile[] = [
 
 /**
  * Why: Board results and named toppers are the strongest trust signal for parents comparing schools.
- * What: Three 2025 topper profile cards with photos, scores, and stream labels.
+ * What: 2025 topper profile cards that become a compact horizontal scroller on mobile while staying grid-based on larger screens.
  * Where: Homepage `#results`.
  * When: On scroll; cards animate in once; update `TOPPERS_2025` and images when a new batch is declared.
  * Who: Prospective families and current parents.
- * How: `next/image` for optimised portraits from `public/board-toppers/`; `SlideInWhenVisible` for entrance motion.
+ * How: `next/image` for optimised portraits from `public/board-toppers/`; mobile uses `overflow-x-auto` + `snap` cards, desktop switches to grid.
  */
 export function BoardResultsSection() {
   return (
@@ -87,7 +87,11 @@ export function BoardResultsSection() {
           </div>
         </FadeInWhenVisible>
 
-        <div className="mt-8 grid gap-5 sm:mt-10 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 sm:mt-10">
+          <div className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:mb-3 sm:hidden">
+            Swipe for more →
+          </div>
+          <div className="flex snap-x snap-mandatory gap-3 overflow-x-auto pb-2 pr-2 [-ms-overflow-style:none] [scrollbar-width:none] sm:grid sm:gap-5 sm:overflow-visible sm:pb-0 sm:pr-0 sm:[scrollbar-width:auto] sm:grid-cols-2 lg:grid-cols-3 [&::-webkit-scrollbar]:hidden sm:[&::-webkit-scrollbar]:block">
           {TOPPERS_2025.map((topper, index) => {
             const variant = CARD_BLUE_VARIANTS[index % CARD_BLUE_VARIANTS.length];
             const direction = index % 2 === 0 ? "left" : "right";
@@ -96,6 +100,7 @@ export function BoardResultsSection() {
                 key={topper.studentName}
                 direction={direction}
                 delay={index * 0.08}
+                className="w-[160px] shrink-0 snap-start sm:w-auto sm:shrink sm:snap-none"
               >
                 <article
                   className={`flex h-full flex-col overflow-hidden rounded-2xl border shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-soft ${variant}`}
@@ -106,25 +111,26 @@ export function BoardResultsSection() {
                       alt={topper.photoAlt}
                       fill
                       className="object-cover object-top"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      sizes="(max-width: 640px) 160px, (max-width: 1024px) 50vw, 33vw"
                     />
                   </div>
-                  <div className="flex flex-1 flex-col p-5">
-                    <p className="text-[11px] font-bold uppercase tracking-wide text-brand-700">
+                  <div className="flex flex-1 flex-col p-2.5 sm:p-5">
+                    <p className="text-[9px] font-bold uppercase tracking-wide text-brand-700 sm:text-[11px]">
                       {topper.badge}
                     </p>
-                    <p className="mt-2 font-[family-name:var(--font-plus-jakarta)] text-3xl font-bold text-brand-700">
+                    <p className="mt-1.5 font-[family-name:var(--font-plus-jakarta)] text-xl font-bold text-brand-700 sm:mt-2 sm:text-3xl">
                       {topper.score}
                     </p>
-                    <p className="mt-2 font-[family-name:var(--font-plus-jakarta)] text-lg font-bold text-slate-900">
+                    <p className="mt-1.5 font-[family-name:var(--font-plus-jakarta)] text-[13px] font-bold text-slate-900 sm:mt-2 sm:text-lg">
                       {topper.studentName}
                     </p>
-                    <p className="mt-1 text-sm font-medium text-slate-600">{topper.streamLine}</p>
+                    <p className="mt-1 text-[10px] font-medium text-slate-600 sm:text-sm">{topper.streamLine}</p>
                   </div>
                 </article>
               </SlideInWhenVisible>
             );
           })}
+        </div>
         </div>
       </div>
     </section>
