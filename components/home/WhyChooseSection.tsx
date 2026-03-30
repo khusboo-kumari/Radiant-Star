@@ -35,11 +35,11 @@ const CARD_BLUE_VARIANTS = [
 
 /**
  * Why: Parents compare schools quickly — we must answer “why here?” with crisp proof points, not essays.
- * What: Four highlight cards with blue shade variants, left/right trending entrance animation, and subtle shimmer highlight.
+ * What: Four highlight cards with blue shade variants, left/right trending entrance animation, and subtle shimmer highlight; cards switch to mobile horizontal swipe.
  * Where: Homepage section `#why-us`, after the hero.
  * When: As users scroll; cards slide in from alternating sides, then shimmer appears on hover.
  * Who: Prospective families evaluating fit.
- * How: Static data array mapped to cards, `SlideInWhenVisible` for motion, and a gradient overlay for shimmer.
+ * How: Static data array mapped to cards; mobile uses `overflow-x-auto` + snap while `sm+` uses grid; `SlideInWhenVisible` handles motion and a gradient overlay adds shimmer.
  */
 export function WhyChooseSection() {
   return (
@@ -66,7 +66,11 @@ export function WhyChooseSection() {
         </div>
       </FadeInWhenVisible>
 
-      <div className="mt-8 grid gap-4 sm:mt-10 sm:gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-8 sm:mt-10">
+        <div className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:mb-3 sm:hidden">
+          Swipe for more →
+        </div>
+        <div className="flex snap-x snap-mandatory gap-3 overflow-x-auto pb-2 pr-2 [-ms-overflow-style:none] [scrollbar-width:none] sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:pb-0 sm:pr-0 lg:grid-cols-4 [&::-webkit-scrollbar]:hidden sm:[&::-webkit-scrollbar]:block">
         {HIGHLIGHTS.map((item, index) => {
           const direction = index % 2 === 0 ? "left" : "right";
           const variant = CARD_BLUE_VARIANTS[index % CARD_BLUE_VARIANTS.length];
@@ -76,23 +80,25 @@ export function WhyChooseSection() {
               key={item.title}
               direction={direction}
               delay={index * 0.07}
+              className="w-[225px] shrink-0 snap-start sm:w-auto sm:shrink sm:snap-none"
             >
               <article
-                className={`group relative h-full overflow-hidden rounded-2xl border p-5 shadow-card transition duration-300 hover:-translate-y-1.5 hover:shadow-soft ${variant}`}
+                className={`group relative h-full overflow-hidden rounded-2xl border p-4 shadow-card transition duration-300 hover:-translate-y-1.5 hover:shadow-soft sm:p-5 ${variant}`}
               >
                 <div className="pointer-events-none absolute -left-24 -top-10 h-20 w-40 rotate-12 bg-gradient-to-r from-transparent via-white/55 to-transparent opacity-0 blur-[1px] transition-all duration-700 group-hover:left-[120%] group-hover:opacity-100" />
 
                 <div className="relative flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500/15 to-sky-500/10 text-brand-600 shadow-sm ring-1 ring-brand-200/50 transition group-hover:scale-105 group-hover:from-brand-500/25 group-hover:to-sky-500/15">
                   <item.icon className="h-5 w-5" strokeWidth={2} aria-hidden />
                 </div>
-                <h3 className="mt-4 font-[family-name:var(--font-plus-jakarta)] text-lg font-semibold text-slate-900">
+                <h3 className="mt-3 font-[family-name:var(--font-plus-jakarta)] text-base font-semibold text-slate-900 sm:mt-4 sm:text-lg">
                   {item.title}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-600">{item.body}</p>
+                <p className="mt-2 text-[13px] leading-relaxed text-slate-600 sm:text-sm">{item.body}</p>
               </article>
             </SlideInWhenVisible>
           );
         })}
+      </div>
       </div>
     </section>
   );

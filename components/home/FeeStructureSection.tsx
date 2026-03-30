@@ -24,11 +24,11 @@ const LEVELS = [
 
 /**
  * Why: Parents often need to verify tuition before enquiring — a clear, modern “Fees” band plus download is enough.
- * What: Hero-style callout, animated class-wise chips, and a single prominent download button for the official PDF.
+ * What: Hero-style callout, animated class-wise chips, and a single prominent download button; fee cards become horizontal swipe tiles on mobile.
  * Where: Homepage `#fee-structure`, placed before the general documents grid in `app/page.tsx`.
  * When: Always visible on the marketing homepage; update the underlying PDF file when a new session’s fee circular is published.
  * Who: Prospective and current parents comparing options.
- * How: Serves the static asset from `public/documents/` and uses motion cards instead of an inline PDF viewer for a cleaner UI.
+ * How: Serves the static asset from `public/documents/`; mobile uses `overflow-x-auto` + snap cards while `md+` returns to a grid.
  */
 export function FeeStructureSection() {
   const pdfUrl = FEE_STRUCTURE_2025_26_PDF;
@@ -69,18 +69,23 @@ export function FeeStructureSection() {
           </div>
         </FadeInWhenVisible>
 
-        <div className="mt-8 grid gap-4 sm:mt-10 sm:gap-5 md:grid-cols-3">
+        <div className="mt-8 sm:mt-10">
+          <div className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:mb-3 md:hidden">
+            Swipe for more →
+          </div>
+          <div className="flex snap-x snap-mandatory gap-3 overflow-x-auto pb-2 pr-2 [-ms-overflow-style:none] [scrollbar-width:none] md:grid md:grid-cols-3 md:gap-5 md:overflow-visible md:pb-0 md:pr-0 [&::-webkit-scrollbar]:hidden md:[&::-webkit-scrollbar]:block">
           {LEVELS.map((level, index) => (
-            <FadeInWhenVisible key={level.key} delay={index * 0.06}>
-              <article className="group h-full rounded-2xl border border-slate-300/60 bg-surface p-5 shadow-card backdrop-blur-sm transition hover:-translate-y-1 hover:border-brand-300 hover:shadow-soft">
+            <div key={level.key} className="w-[225px] shrink-0 snap-start md:w-auto md:shrink">
+              <FadeInWhenVisible delay={index * 0.06}>
+              <article className="group h-full rounded-2xl border border-slate-300/60 bg-surface p-4 shadow-card backdrop-blur-sm transition hover:-translate-y-1 hover:border-brand-300 hover:shadow-soft sm:p-5">
                 <div className="inline-flex items-center gap-2 rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand-700">
                   <span className="h-1.5 w-1.5 rounded-full bg-brand-500" />
                   {level.key}
                 </div>
-                <h3 className="mt-4 font-[family-name:var(--font-plus-jakarta)] text-lg font-semibold text-slate-900">
+                <h3 className="mt-3 font-[family-name:var(--font-plus-jakarta)] text-base font-semibold text-slate-900 sm:mt-4 sm:text-lg">
                   {level.label}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                <p className="mt-2 text-[13px] leading-relaxed text-slate-600 sm:text-sm">
                   {level.description}
                 </p>
                 <p className="mt-4 text-[11px] font-medium uppercase tracking-wide text-slate-400">
@@ -88,7 +93,9 @@ export function FeeStructureSection() {
                 </p>
               </article>
             </FadeInWhenVisible>
+            </div>
           ))}
+        </div>
         </div>
       </div>
     </section>

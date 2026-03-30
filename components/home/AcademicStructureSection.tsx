@@ -48,11 +48,11 @@ const CARD_BLUE_VARIANTS = [
 
 /**
  * Why: Parents need a clear academic ladder — Nursery to XII should read as intentional, not “one big block”.
- * What: Card grid with varied blue shades and alternating left/right slide-in; badge, title, grades, focus.
+ * What: Academic stage cards that become a compact horizontal scroller on mobile and return to a grid on larger screens.
  * Where: Homepage `#academics` section.
  * When: On scroll; SlideInWhenVisible triggers once per card.
  * Who: Parents mapping their child’s current grade to the right environment.
- * How: Client component; SlideInWhenVisible + CARD_BLUE_VARIANTS cycle; Framer Motion respects reduced motion.
+ * How: Client component; mobile uses `overflow-x-auto` + `snap` cards, `sm+` switches to grid; SlideInWhenVisible + CARD_BLUE_VARIANTS cycle.
  */
 export function AcademicStructureSection() {
   return (
@@ -81,7 +81,11 @@ export function AcademicStructureSection() {
           </div>
         </FadeInWhenVisible>
 
-        <div className="mt-8 grid gap-4 sm:mt-10 sm:gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 sm:mt-10">
+          <div className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:mb-3 sm:hidden">
+            Swipe for more →
+          </div>
+          <div className="flex snap-x snap-mandatory gap-3 overflow-x-auto pb-2 pr-2 [-ms-overflow-style:none] [scrollbar-width:none] sm:grid sm:gap-5 sm:overflow-visible sm:pb-0 sm:pr-0 sm:grid-cols-2 lg:grid-cols-3 [&::-webkit-scrollbar]:hidden sm:[&::-webkit-scrollbar]:block">
           {STAGES.map((stage, index) => {
             const variant = CARD_BLUE_VARIANTS[index % CARD_BLUE_VARIANTS.length];
             const direction = index % 2 === 0 ? "left" : "right";
@@ -90,22 +94,24 @@ export function AcademicStructureSection() {
                 key={stage.name}
                 direction={direction}
                 delay={index * 0.06}
+                className="w-[225px] shrink-0 snap-start sm:w-auto sm:shrink sm:snap-none"
               >
                 <article
-                  className={`flex h-full flex-col rounded-2xl border p-5 shadow-card transition duration-300 hover:-translate-y-1.5 hover:shadow-soft ${variant}`}
+                  className={`flex h-full flex-col rounded-2xl border p-4 shadow-card transition duration-300 hover:-translate-y-1.5 hover:shadow-soft sm:p-5 ${variant}`}
                 >
-                  <span className="w-fit rounded-full bg-surface/95 px-3 py-1 text-xs font-semibold text-brand-800 shadow-sm ring-1 ring-brand-300/50">
+                  <span className="w-fit rounded-full bg-surface/95 px-3 py-1 text-[11px] font-semibold text-brand-800 shadow-sm ring-1 ring-brand-300/50 sm:text-xs">
                     {stage.badge}
                   </span>
-                  <h3 className="mt-4 font-[family-name:var(--font-plus-jakarta)] text-xl font-semibold text-slate-900">
+                  <h3 className="mt-3 font-[family-name:var(--font-plus-jakarta)] text-lg font-semibold text-slate-900 sm:mt-4 sm:text-xl">
                     {stage.name}
                   </h3>
-                  <p className="mt-1 text-sm font-medium text-brand-700">{stage.grades}</p>
-                  <p className="mt-3 text-sm leading-relaxed text-slate-600">{stage.focus}</p>
+                  <p className="mt-1 text-[13px] font-medium text-brand-700 sm:text-sm">{stage.grades}</p>
+                  <p className="mt-2 text-[13px] leading-relaxed text-slate-600 sm:mt-3 sm:text-sm">{stage.focus}</p>
                 </article>
               </SlideInWhenVisible>
             );
           })}
+        </div>
         </div>
       </div>
     </section>
