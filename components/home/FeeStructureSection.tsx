@@ -1,5 +1,6 @@
 import { FileDown } from "lucide-react";
 import { FadeInWhenVisible } from "@/components/motion/FadeInWhenVisible";
+import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 import { FEE_STRUCTURE_2025_26_PDF } from "@/lib/site-documents";
 
 const LEVELS = [
@@ -38,20 +39,18 @@ export function FeeStructureSection() {
       className="border-y border-brand-200/50 bg-gradient-to-b from-background to-brand-100/35"
       aria-labelledby="fee-structure-heading"
     >
-      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
         <FadeInWhenVisible>
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-2xl">
-              <p className="text-sm font-semibold uppercase tracking-wide text-brand-600">
-                Fee structure
-              </p>
+              <SectionEyebrow>Fee structure</SectionEyebrow>
               <h2
                 id="fee-structure-heading"
-                className="mt-2 font-[family-name:var(--font-plus-jakarta)] text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl"
+                className="mt-3 font-[family-name:var(--font-plus-jakarta)] text-2xl font-extrabold tracking-tight text-slate-900 sm:mt-4 sm:text-4xl"
               >
                 Academic session 2025–26
               </h2>
-              <p className="mt-4 text-base leading-relaxed text-slate-600">
+              <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:mt-4 sm:text-base">
                 Exact amounts are defined in the{" "}
                 <span className="font-medium text-slate-900">official fee circular</span>. Below is a
                 quick view of which sections the circular covers.
@@ -61,7 +60,7 @@ export function FeeStructureSection() {
               <a
                 href={pdfUrl}
                 download="Radiant-Star-Fee-Structure-2025-26.pdf"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-brand-700"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-brand-600 to-sky-500 px-6 py-3 text-sm font-bold text-white shadow-[0_10px_28px_-8px_rgb(37_99_235/0.45)] transition hover:-translate-y-0.5 hover:brightness-105"
               >
                 <FileDown className="h-4 w-4" aria-hidden />
                 Download fee structure (PDF)
@@ -70,7 +69,7 @@ export function FeeStructureSection() {
           </div>
         </FadeInWhenVisible>
 
-        <div className="mt-10 grid gap-5 md:grid-cols-3">
+        <div className="mt-8 grid gap-4 sm:mt-10 sm:gap-5 md:grid-cols-3">
           {LEVELS.map((level, index) => (
             <FadeInWhenVisible key={level.key} delay={index * 0.06}>
               <article className="group h-full rounded-2xl border border-slate-300/60 bg-surface p-5 shadow-card backdrop-blur-sm transition hover:-translate-y-1 hover:border-brand-300 hover:shadow-soft">

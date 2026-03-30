@@ -14,7 +14,7 @@ export function AdmissionsCtaSection() {
   return (
     <section
       id="admissions"
-      className="mx-auto max-w-6xl px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8"
+      className="mx-auto max-w-6xl px-4 pb-10 sm:px-6 sm:pb-16 lg:px-8 lg:pb-20"
       aria-labelledby="admissions-heading"
     >
       <FadeInWhenVisible>

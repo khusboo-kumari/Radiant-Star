@@ -1,6 +1,7 @@
 import { BookOpen, HeartHandshake, ShieldCheck, Trophy } from "lucide-react";
 import { FadeInWhenVisible } from "@/components/motion/FadeInWhenVisible";
 import { SlideInWhenVisible } from "@/components/motion/SlideInWhenVisible";
+import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 
 const HIGHLIGHTS = [
   {
@@ -44,29 +45,28 @@ export function WhyChooseSection() {
   return (
     <section
       id="why-us"
-      className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
+      className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-20"
       aria-labelledby="why-heading"
     >
       <FadeInWhenVisible>
         <div className="max-w-2xl">
-          <p className="text-sm font-semibold uppercase tracking-wide text-brand-600">
-            Why families choose us
-          </p>
+          <SectionEyebrow>Why families choose us</SectionEyebrow>
           <h2
             id="why-heading"
-            className="mt-2 font-[family-name:var(--font-plus-jakarta)] text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl"
+            className="mt-3 font-[family-name:var(--font-plus-jakarta)] text-2xl font-extrabold tracking-tight text-slate-900 sm:mt-4 sm:text-4xl"
           >
             Trustworthy academics, vibrant campus life
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-slate-600">
-            Radiant Star is built for  families who want a school that feels{" "}
-            <span className="font-medium text-slate-800">approachable for little ones</span> yet{" "}
-            <span className="font-medium text-slate-800">ambitious for teens</span>.
+          <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:mt-4 sm:text-base">
+            <span className="font-semibold text-slate-800">Warmth for little ones. Ambition for teens.</span>{" "}
+            <span className="hidden sm:inline">
+              Radiant Star is built for families who want a school that feels approachable yet rigorous.
+            </span>
           </p>
         </div>
       </FadeInWhenVisible>
 
-      <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-8 grid gap-4 sm:mt-10 sm:gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {HIGHLIGHTS.map((item, index) => {
           const direction = index % 2 === 0 ? "left" : "right";
           const variant = CARD_BLUE_VARIANTS[index % CARD_BLUE_VARIANTS.length];
@@ -82,8 +82,8 @@ export function WhyChooseSection() {
               >
                 <div className="pointer-events-none absolute -left-24 -top-10 h-20 w-40 rotate-12 bg-gradient-to-r from-transparent via-white/55 to-transparent opacity-0 blur-[1px] transition-all duration-700 group-hover:left-[120%] group-hover:opacity-100" />
 
-                <div className="relative flex h-11 w-11 items-center justify-center rounded-xl bg-surface text-brand-600 shadow-sm ring-1 ring-brand-200/60 transition group-hover:scale-105 group-hover:bg-white">
-                  <item.icon className="h-5 w-5" aria-hidden />
+                <div className="relative flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500/15 to-sky-500/10 text-brand-600 shadow-sm ring-1 ring-brand-200/50 transition group-hover:scale-105 group-hover:from-brand-500/25 group-hover:to-sky-500/15">
+                  <item.icon className="h-5 w-5" strokeWidth={2} aria-hidden />
                 </div>
                 <h3 className="mt-4 font-[family-name:var(--font-plus-jakarta)] text-lg font-semibold text-slate-900">
                   {item.title}

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { FadeInWhenVisible } from "@/components/motion/FadeInWhenVisible";
 import { SlideInWhenVisible } from "@/components/motion/SlideInWhenVisible";
+import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 
 const GALLERY_ITEMS = [
   {
@@ -64,27 +65,26 @@ export function GalleryPreviewSection() {
       className="border-y border-brand-200/40 bg-background"
       aria-labelledby="gallery-heading"
     >
-      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
         <FadeInWhenVisible>
           <div className="max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-wide text-brand-600">
-              Gallery preview
-            </p>
+            <SectionEyebrow>Gallery preview</SectionEyebrow>
             <h2
               id="gallery-heading"
-              className="mt-2 font-[family-name:var(--font-plus-jakarta)] text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl"
+              className="mt-3 font-[family-name:var(--font-plus-jakarta)] text-2xl font-extrabold tracking-tight text-slate-900 sm:mt-4 sm:text-4xl"
             >
               Moments from campus life
             </h2>
-            <p className="mt-4 text-base leading-relaxed text-slate-600">
-              Every photo tells a story of learning, culture, and confidence at Radiant Star.
+            <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:mt-4 sm:text-base">
+              Learning, culture, and confidence — captured on campus.
             </p>
           </div>
         </FadeInWhenVisible>
 
-        <div className="mt-10">
-          <div className="mb-3 text-xs font-medium uppercase tracking-wide text-slate-500">
-            Scroll to see more
+        <div className="mt-8 sm:mt-10">
+          <div className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:mb-3">
+            <span className="sm:hidden">Swipe for more →</span>
+            <span className="hidden sm:inline">Scroll for more →</span>
           </div>
           <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {GALLERY_ITEMS.map((item, index) => {

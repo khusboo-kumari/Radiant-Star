@@ -14,7 +14,7 @@ Open [http://localhost:3000](http://localhost:3000).
 ## Content you will replace later
 
 - **Copy & stats:** Board result numbers, topper names, notice text, and contact details are placeholders.
-- **Hero images:** The header cycles every 2s through five photos in `public/`: `campus-hero.png`, `campus-assembly.png`, `campus-hero-slide-building.png`, `campus-hero-peace-banner.png`, `campus-hero-wide-lawn.png`. Edit `HERO_SLIDES` in `components/home/HeroSection.tsx` to add/remove or reorder.
+- **Hero images:** The header cycles every 2s through three photos in `public/`: `campus-hero-wide-lawn.png`, `campus-hero-peace-banner.png`, `campus-assembly.png`. Edit `HERO_SLIDES` in `components/home/HeroSection.tsx` to add/remove or reorder.
 - **Gallery:** Real photos live in `public/gallery/` (`campus-tug-of-war.png`, `campus-computer-lab.png`, `campus-01.png`). Add files there and extend `GALLERY_ITEMS` in `components/home/GalleryPreviewSection.tsx`.
 - **PDF downloads:** Register new files in `lib/site-documents.ts` and `components/home/DocumentsSection.tsx`. Current files in `public/documents/`:
   - `fee-structure-2025-26.pdf`

@@ -11,8 +11,8 @@ import { FileText, Mail, MapPin, Phone } from "lucide-react";
  */
 export function SiteFooter() {
   return (
-    <footer className="border-t border-brand-200/60 bg-surface">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-3 lg:px-8">
+    <footer className="border-t border-brand-200/60 bg-surface pb-[calc(4.5rem+env(safe-area-inset-bottom))] lg:pb-0">
+      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:gap-10 sm:px-6 sm:py-12 lg:grid-cols-3 lg:px-8 lg:py-14">
         <div>
           <div className="flex items-center gap-2">
             <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-500 text-lg font-bold text-white shadow-card">
@@ -44,6 +44,7 @@ export function SiteFooter() {
               ["Facilities", "#facilities"],
               ["Gallery", "#gallery"],
               ["Documents", "#documents"],
+              ["Exam schedule", "#exam-schedule"],
             ].map(([label, href]) => (
               <li key={href}>
                 <Link

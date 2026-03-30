@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { FadeInWhenVisible } from "@/components/motion/FadeInWhenVisible";
 import { SlideInWhenVisible } from "@/components/motion/SlideInWhenVisible";
+import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 import {
   ACADEMIC_CALENDAR_2026_27_PDF,
   BUILDING_SAFETY_CERTIFICATE_2026_PNG,
@@ -50,12 +51,12 @@ const CARD_BLUE_VARIANTS = [
 ] as const;
 
 /**
- * Why: Schools must surface fee, calendar, PTA, and statutory certificates in one trustworthy grid.
- * What: Single-row horizontal document cards with blue shades, left/right slide-in animation, icon, copy, and download CTA.
+ * Why: Schools must surface fee, calendar, PTA, and statutory certificates in one trustworthy place.
+ * What: User-friendly intro; left column lists every document title with anchor jumps; right side keeps the horizontal snap carousel with download CTAs.
  * Where: Homepage `#documents`.
- * When: Cards animate on scroll (once); add entries when new PDFs or scans are added under `public/documents/` and `lib/site-documents.ts`.
+ * When: Cards animate on scroll (once); add entries in `DOCUMENTS` and `lib/site-documents.ts` when new files are published.
  * Who: Parents, auditors, and admin staff.
- * How: Client component; `SlideInWhenVisible` for directional entrance; `CARD_BLUE_VARIANTS` for variety; Framer Motion respects reduced motion.
+ * How: Client component; list `href`s target `#doc-{id}` on each card (`scroll-mt` offsets sticky header); `SlideInWhenVisible` for cards.
  */
 const DOCUMENTS: DocumentItem[] = [
   {
@@ -160,79 +161,97 @@ export function DocumentsSection() {
       className="bg-gradient-to-b from-background to-brand-100/35"
       aria-labelledby="documents-heading"
     >
-      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
         <FadeInWhenVisible>
           <div className="max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-wide text-brand-600">
-              Documents & compliance
-            </p>
+            <SectionEyebrow>Documents & compliance</SectionEyebrow>
             <h2
               id="documents-heading"
-              className="mt-2 font-[family-name:var(--font-plus-jakarta)] text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl"
+              className="mt-3 font-[family-name:var(--font-plus-jakarta)] text-2xl font-extrabold tracking-tight text-slate-900 sm:mt-4 sm:text-4xl"
             >
               Download official school documents
             </h2>
-            <p className="mt-4 text-base leading-relaxed text-slate-600">
-              Below are the latest PDFs and official document scans on file. To add more later, place them in{" "}
-              <code className="rounded bg-surface px-1.5 py-0.5 text-sm ring-1 ring-slate-300/70">
-                public/documents
-              </code>{" "}
-              and register the path in{" "}
-              <code className="rounded bg-surface px-1.5 py-0.5 text-sm ring-1 ring-slate-300/70">
-                lib/site-documents.ts
-              </code>{" "}
-              and this list.
+            <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:mt-4 sm:text-base">
+              Fee details, calendars, notices, and certificates — all in one place.{" "}
+              <span className="hidden sm:inline">
+                Use the quick list to jump to a file, or swipe through the cards to read more and download.
+              </span>
+              <span className="sm:hidden">Tap the list below to jump, or swipe the cards to download.</span>
             </p>
           </div>
         </FadeInWhenVisible>
 
-        <div className="mt-10">
-          <div className="mb-3 text-xs font-medium uppercase tracking-wide text-slate-500">
-            Scroll to see all documents
-          </div>
-          <div className="flex snap-x snap-mandatory gap-5 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {DOCUMENTS.map((doc, index) => {
-            const variant = CARD_BLUE_VARIANTS[index % CARD_BLUE_VARIANTS.length];
-            const direction = index % 2 === 0 ? "left" : "right";
-            return (
-              <SlideInWhenVisible
-                key={doc.id}
-                direction={direction}
-                delay={index * 0.06}
-                className="w-[320px] shrink-0 snap-start sm:w-[360px] lg:w-[400px]"
-              >
-                <article
-                  className={`flex h-full flex-col rounded-2xl border p-6 shadow-card transition duration-300 hover:-translate-y-1.5 hover:shadow-soft ${variant}`}
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-surface text-brand-600 shadow-sm ring-1 ring-slate-300/70">
-                      <doc.icon className="h-6 w-6" aria-hidden />
-                    </div>
-                    <div className="min-w-0">
-                      <h3 className="font-[family-name:var(--font-plus-jakarta)] text-lg font-semibold text-slate-900">
-                        {doc.title}
-                      </h3>
-                      <p className="mt-2 text-sm leading-relaxed text-slate-600">
-                        {doc.description}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center">
+        <div className="mt-8 flex flex-col gap-8 lg:mt-10 lg:flex-row lg:items-start lg:gap-10">
+          <aside className="w-full shrink-0 lg:sticky lg:top-28 lg:w-72 lg:max-w-[min(100%,20rem)]">
+            <p className="mb-3 text-xs font-bold uppercase tracking-[0.12em] text-slate-500">
+              All documents
+            </p>
+            <nav
+              aria-label="All available documents"
+              className="rounded-2xl border border-brand-200/80 bg-surface/95 p-2 shadow-card ring-1 ring-slate-200/40"
+            >
+              <ul className="max-h-[min(50vh,20rem)] space-y-0.5 overflow-y-auto pr-1 [scrollbar-width:thin] lg:max-h-[calc(100vh-12rem)]">
+                {DOCUMENTS.map((doc) => (
+                  <li key={doc.id}>
                     <a
-                      href={doc.href}
-                      download
-                      className="inline-flex items-center justify-center rounded-full bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white shadow-md transition hover:bg-brand-700 hover:shadow-lg"
+                      href={`#doc-${doc.id}`}
+                      className="block rounded-xl px-3 py-2.5 text-sm font-medium leading-snug text-slate-700 transition hover:bg-brand-50 hover:text-brand-800"
                     >
-                      {doc.cta}
+                      {doc.title}
                     </a>
-                    <span className="break-all text-xs text-slate-500 sm:max-w-[55%]">
-                      {doc.href}
-                    </span>
-                  </div>
-                </article>
-              </SlideInWhenVisible>
-            );
-          })}
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </aside>
+
+          <div className="min-w-0 flex-1">
+            <div className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:mb-3">
+              <span className="sm:hidden">Swipe for all docs →</span>
+              <span className="hidden sm:inline">Scroll for all documents →</span>
+            </div>
+            <div className="flex snap-x snap-mandatory gap-5 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              {DOCUMENTS.map((doc, index) => {
+                const variant = CARD_BLUE_VARIANTS[index % CARD_BLUE_VARIANTS.length];
+                const direction = index % 2 === 0 ? "left" : "right";
+                return (
+                  <SlideInWhenVisible
+                    key={doc.id}
+                    direction={direction}
+                    delay={index * 0.06}
+                    className="w-[320px] shrink-0 snap-start sm:w-[360px] lg:w-[400px]"
+                  >
+                    <article
+                      id={`doc-${doc.id}`}
+                      className={`flex h-full scroll-mt-28 flex-col rounded-2xl border p-6 shadow-card transition duration-300 hover:-translate-y-1.5 hover:shadow-soft ${variant}`}
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500/12 to-sky-500/10 text-brand-600 shadow-sm ring-1 ring-brand-200/60">
+                          <doc.icon className="h-6 w-6" strokeWidth={2} aria-hidden />
+                        </div>
+                        <div className="min-w-0">
+                          <h3 className="font-[family-name:var(--font-plus-jakarta)] text-lg font-semibold text-slate-900">
+                            {doc.title}
+                          </h3>
+                          <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                            {doc.description}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="mt-6">
+                        <a
+                          href={doc.href}
+                          download
+                          className="inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-brand-600 to-sky-500 px-5 py-2.5 text-sm font-bold text-white shadow-md shadow-brand-500/20 transition hover:brightness-105 hover:shadow-lg sm:w-auto"
+                        >
+                          {doc.cta}
+                        </a>
+                      </div>
+                    </article>
+                  </SlideInWhenVisible>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>

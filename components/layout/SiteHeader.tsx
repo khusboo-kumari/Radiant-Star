@@ -1,40 +1,67 @@
 "use client";
 
-import { Menu, X } from "lucide-react";
+import {
+  Building2,
+  CalendarDays,
+  FolderOpen,
+  GraduationCap,
+  Heart,
+  ImageIcon,
+  Menu,
+  Sparkles,
+  Trophy,
+  Wallet,
+  X,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const NAV_LINKS = [
-  { href: "#why-us", label: "Why Us" },
-  { href: "#academics", label: "Academics" },
-  { href: "#fee-structure", label: "Fees" },
-  { href: "#results", label: "Board Results" },
-  { href: "#facilities", label: "Facilities" },
-  { href: "#gallery", label: "Gallery" },
-  { href: "#documents", label: "Documents" },
-  { href: "#announcements", label: "Notices" },
+  { href: "#why-us", label: "Why Us", icon: Heart },
+  { href: "#academics", label: "Academics", icon: GraduationCap },
+  { href: "#fee-structure", label: "Fees", icon: Wallet },
+  { href: "#results", label: "Board Results", icon: Trophy },
+  { href: "#facilities", label: "Facilities", icon: Building2 },
+  { href: "#gallery", label: "Gallery", icon: ImageIcon },
+  { href: "#documents", label: "Documents", icon: FolderOpen },
+  { href: "#exam-schedule", label: "Exams", icon: CalendarDays },
 ] as const;
 
 /**
- * Why: Primary navigation must work on phones (tap targets, overlay menu) and desktops (inline links).
- * What: Sticky header with brand lockup, anchor navigation, and a highlighted Admissions CTA.
+ * Why: Primary navigation must work on phones (drawer + thumb reach) and desktops (scannable pills).
+ * What: Sticky glass header with scroll depth, desktop links inside a rounded glass rail, mobile menu rows with icons.
  * Where: Rendered once in `app/page.tsx` above the hero.
- * When: Visible on initial load; becomes slightly more opaque on scroll (future enhancement possible).
- * Who: The site visitor taps/clicks links; this component owns open/close state for mobile.
- * How: `useState` toggles the drawer; `lucide-react` icons for affordances.
+ * When: Shadow intensifies after scroll; mobile drawer toggles on menu tap.
+ * Who: Site visitors; this component owns `open` state and `scrolled` for affordances.
+ * How: `useState` + `useEffect` scroll listener; Lucide icons per route for a current, app-like feel.
  */
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-brand-200/60 bg-surface/90 backdrop-blur-md">
-      <div className="flex w-full items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
+    <header
+      className={`sticky top-0 z-50 border-b transition-[box-shadow,background-color] duration-300 ${
+        scrolled
+          ? "border-brand-200/80 bg-surface/95 shadow-[0_10px_40px_-18px_rgb(15_23_42/0.18)] backdrop-blur-xl"
+          : "border-brand-200/50 bg-surface/80 backdrop-blur-md"
+      }`}
+    >
+      <div className="flex w-full items-center justify-between gap-3 px-3 py-2.5 sm:gap-4 sm:px-6 lg:px-8">
         <Link
           href="#top"
-          className="group flex min-w-0 items-center gap-2 rounded-xl px-1 py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500"
+          title="Radiant Star Education Centre"
+          className="group flex min-w-0 max-w-[min(100%,calc(100vw-8rem))] items-center gap-2 rounded-xl px-1 py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 sm:max-w-none"
         >
-          <span className="relative h-11 w-11 shrink-0 overflow-hidden transition-transform group-hover:scale-[1.02]">
+          <span className="relative h-10 w-10 shrink-0 overflow-hidden transition-transform group-hover:scale-[1.03] sm:h-11 sm:w-11">
             <Image
               src="/school-logo.png"
               alt="Radiant Star Education Centre logo"
@@ -44,36 +71,43 @@ export function SiteHeader() {
               priority
             />
           </span>
-          <span className="whitespace-nowrap font-[family-name:var(--font-plus-jakarta)] text-[10px] font-semibold uppercase tracking-[0.03em] text-slate-900 sm:text-xs md:text-sm lg:text-base">
+          <span className="truncate font-[family-name:var(--font-plus-jakarta)] text-[10px] font-bold uppercase leading-tight tracking-[0.04em] text-slate-900 sm:whitespace-nowrap sm:text-xs md:text-sm lg:text-base">
             RADIANT STAR EDUCATION CENTRE
           </span>
         </Link>
 
         <nav
-          className="hidden items-center gap-1 lg:flex"
+          className="hidden items-center gap-0.5 rounded-full border border-white/60 bg-white/50 px-1.5 py-1 shadow-card backdrop-blur-md lg:flex"
           aria-label="Primary"
         >
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-brand-50 hover:text-brand-700"
+              className="rounded-full px-3 py-2 text-xs font-semibold text-slate-600 transition-colors hover:bg-brand-50 hover:text-brand-700 xl:px-3.5 xl:text-[13px]"
             >
               {link.label}
             </Link>
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-2">
           <Link
             href="#admissions"
-            className="hidden rounded-full bg-brand-600 px-4 py-2 text-sm font-semibold text-white shadow-soft transition hover:bg-brand-700 sm:inline-flex"
+            className="hidden items-center gap-1.5 rounded-full bg-gradient-to-r from-brand-600 to-sky-500 px-4 py-2 text-xs font-bold text-white shadow-[0_8px_24px_-6px_rgb(37_99_235/0.45)] transition hover:brightness-105 sm:inline-flex md:text-sm"
           >
-            Admissions Open
+            <Sparkles className="h-3.5 w-3.5 opacity-90" aria-hidden />
+            Admissions
+          </Link>
+          <Link
+            href="#admissions"
+            className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-brand-600 to-sky-500 px-3 py-2 text-[11px] font-bold text-white shadow-md shadow-brand-500/30 sm:hidden"
+          >
+            Apply
           </Link>
           <button
             type="button"
-            className="inline-flex items-center justify-center rounded-xl border border-slate-300/80 bg-surface p-2 text-slate-800 shadow-sm transition hover:border-brand-200 hover:text-brand-700 lg:hidden"
+            className="inline-flex items-center justify-center rounded-xl border border-slate-200/90 bg-white/90 p-2 text-slate-800 shadow-sm transition hover:border-brand-200 hover:text-brand-700 lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
             onClick={() => setOpen((v) => !v)}
@@ -87,25 +121,32 @@ export function SiteHeader() {
       {open ? (
         <div
           id="mobile-nav"
-          className="border-t border-brand-200/60 bg-surface px-4 pb-4 lg:hidden"
+          className="max-h-[min(70vh,calc(100dvh-5rem))] overflow-y-auto border-t border-brand-200/60 bg-surface/98 px-3 pb-4 backdrop-blur-xl lg:hidden"
         >
-          <div className="mx-auto flex max-w-6xl flex-col gap-1 pt-2">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className="rounded-xl px-3 py-3 text-base font-medium text-slate-700 hover:bg-brand-50"
-              >
-                {link.label}
-              </Link>
-            ))}
+          <div className="mx-auto grid max-w-6xl grid-cols-2 gap-2 pt-3 sm:grid-cols-3">
+            {NAV_LINKS.map((link) => {
+              const Icon = link.icon;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  className="flex items-center gap-3 rounded-2xl border border-slate-200/80 bg-white/80 px-3 py-3 text-sm font-semibold text-slate-800 shadow-sm transition active:scale-[0.98] hover:border-brand-200 hover:bg-brand-50/80"
+                >
+                  <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500/15 to-sky-500/10 text-brand-600">
+                    <Icon className="h-5 w-5" aria-hidden />
+                  </span>
+                  <span className="min-w-0 leading-tight">{link.label}</span>
+                </Link>
+              );
+            })}
             <Link
               href="#admissions"
               onClick={() => setOpen(false)}
-              className="mt-2 rounded-full bg-brand-600 px-4 py-3 text-center text-sm font-semibold text-white"
+              className="col-span-2 flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-brand-600 to-sky-500 py-3.5 text-sm font-bold text-white shadow-lg shadow-brand-500/25 sm:col-span-3"
             >
-              Admissions Open
+              <Sparkles className="h-4 w-4" aria-hidden />
+              Admissions open
             </Link>
           </div>
         </div>

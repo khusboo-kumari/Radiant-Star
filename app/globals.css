@@ -42,8 +42,9 @@
   --color-accent-600: var(--accent-600);
   --font-sans: var(--font-dm-sans);
   --font-display: var(--font-plus-jakarta);
-  --shadow-soft: 0 10px 40px -12px rgb(15 23 42 / 0.12);
+  --shadow-soft: 0 12px 48px -14px rgb(15 23 42 / 0.14);
   --shadow-card: 0 4px 24px -6px rgb(15 23 42 / 0.08);
+  --shadow-float: 0 20px 50px -20px rgb(37 99 235 / 0.25);
 }
 
 html {
@@ -51,7 +52,18 @@ html {
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
+  /* Soft mesh — depth without heavy imagery; stays light for long reading on phones */
+  background-image:
+    radial-gradient(1200px 600px at 0% -10%, rgb(191 219 254 / 0.45), transparent 55%),
+    radial-gradient(900px 500px at 100% 0%, rgb(147 197 253 / 0.28), transparent 50%),
+    radial-gradient(800px 400px at 50% 100%, rgb(203 213 225 / 0.35), transparent 45%);
+  background-attachment: fixed;
+}
+
+::selection {
+  background: rgb(191 219 254 / 0.55);
+  color: var(--foreground);
 }

@@ -2,6 +2,7 @@
 
 import { FadeInWhenVisible } from "@/components/motion/FadeInWhenVisible";
 import { SlideInWhenVisible } from "@/components/motion/SlideInWhenVisible";
+import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 
 const STAGES = [
   {
@@ -60,26 +61,27 @@ export function AcademicStructureSection() {
       className="border-y border-brand-200/50 bg-gradient-to-b from-background to-brand-100/35"
       aria-labelledby="academics-heading"
     >
-      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
         <FadeInWhenVisible>
           <div className="max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-wide text-brand-600">
-              Academic structure
-            </p>
+            <SectionEyebrow>Academic structure</SectionEyebrow>
             <h2
               id="academics-heading"
-              className="mt-2 font-[family-name:var(--font-plus-jakarta)] text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl"
+              className="mt-3 font-[family-name:var(--font-plus-jakarta)] text-2xl font-extrabold tracking-tight text-slate-900 sm:mt-4 sm:text-4xl"
             >
               One journey from first classroom to Class XII
             </h2>
-            <p className="mt-4 text-base leading-relaxed text-slate-600">
-              Each stage has its own rhythm — gentle beginnings, steady middle years, and focused board
-              seasons — so students never feel rushed or left behind.
+            <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:mt-4 sm:text-base">
+              Each stage has its own rhythm — from early years to board seasons.
+              <span className="hidden sm:inline">
+                {" "}
+                Students never feel rushed or left behind.
+              </span>
             </p>
           </div>
         </FadeInWhenVisible>
 
-        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 grid gap-4 sm:mt-10 sm:gap-5 md:grid-cols-2 lg:grid-cols-3">
           {STAGES.map((stage, index) => {
             const variant = CARD_BLUE_VARIANTS[index % CARD_BLUE_VARIANTS.length];
             const direction = index % 2 === 0 ? "left" : "right";
