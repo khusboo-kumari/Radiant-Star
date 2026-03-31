@@ -5,8 +5,8 @@ const ITEMS = [
   { href: "#top", label: "Home", icon: Home },
   { href: "#exam-schedule", label: "Exams", icon: CalendarDays },
   { href: "#fee-structure", label: "Fees", icon: Banknote },
-  { href: "#documents", label: "Docs", icon: FolderOpen },
-  { href: "tel:+913880266426", label: "Call", icon: Phone },
+  { href: "#documents", label: "Disclosure", icon: FolderOpen },
+  { href: "tel:+919862669585", label: "Call", icon: Phone },
 ] as const;
 
 /**
@@ -44,7 +44,11 @@ export function MobileQuickNav() {
 
           return (
             <li key={item.href} className="min-w-0 flex-1">
-              <Link href={item.href} className={className}>
+              <Link
+                href={item.href}
+                className={className}
+                aria-label={item.href === "#documents" ? "Mandatory Public Disclosure" : undefined}
+              >
                 <span className="flex h-9 w-9 items-center justify-center rounded-2xl bg-white text-brand-600 shadow-sm ring-1 ring-slate-200/80">
                   <Icon className="h-4 w-4" strokeWidth={2} aria-hidden />
                 </span>

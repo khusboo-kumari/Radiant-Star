@@ -20,14 +20,15 @@ const GALLERY_ITEMS = [
   },
   {
     src: "/gallery/campus-independence-march.png",
-    alt: "Students participating in a patriotic march with flags",
-    caption: "Independence march",
+    alt: "Campus event moment with students and school surroundings",
+    caption: "Campus event",
     frame: "border-brand-300 bg-brand-100/80 ring-2 ring-brand-200/50",
   },
   {
     src: "/gallery/campus-event-photo.png",
-    alt: "Campus event moment with students and school surroundings",
-    caption: "Campus event",
+    alt: "Students participating in a patriotic march with flags",
+    
+    caption: "Independence march",
     frame: "border-sky-300 bg-sky-100/80 ring-2 ring-sky-200/50",
   },
   {

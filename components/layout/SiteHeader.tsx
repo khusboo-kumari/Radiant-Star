@@ -24,7 +24,7 @@ const NAV_LINKS = [
   { href: "#results", label: "Board Results", icon: Trophy },
   { href: "#facilities", label: "Facilities", icon: Building2 },
   { href: "#gallery", label: "Gallery", icon: ImageIcon },
-  { href: "#documents", label: "Documents", icon: FolderOpen },
+  { href: "#documents", label: "Mandatory Public Disclosure", icon: FolderOpen },
   { href: "#exam-schedule", label: "Exams", icon: CalendarDays },
 ] as const;
 
@@ -84,9 +84,17 @@ export function SiteHeader() {
             <Link
               key={link.href}
               href={link.href}
-              className="rounded-full px-3 py-2 text-xs font-semibold text-slate-600 transition-colors hover:bg-brand-50 hover:text-brand-700 xl:px-3.5 xl:text-[13px]"
+              className={`rounded-full font-semibold text-slate-600 transition-colors hover:bg-brand-50 hover:text-brand-700 ${
+                link.href === "#documents"
+                  ? "max-w-[7.5rem] px-2 py-1.5 text-center text-[10px] leading-tight xl:max-w-[8.5rem] xl:text-[11px]"
+                  : "px-3 py-2 text-xs xl:px-3.5 xl:text-[13px]"
+              }`}
             >
-              {link.label}
+              {link.href === "#documents" ? (
+                <span className="block whitespace-normal">{link.label}</span>
+              ) : (
+                link.label
+              )}
             </Link>
           ))}
         </nav>

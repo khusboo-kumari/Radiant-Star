@@ -43,7 +43,7 @@ export function SiteFooter() {
               ["Board results", "#results"],
               ["Facilities", "#facilities"],
               ["Gallery", "#gallery"],
-              ["Documents", "#documents"],
+              ["Mandatory Public Disclosure", "#documents"],
               ["Exam schedule", "#exam-schedule"],
             ].map(([label, href]) => (
               <li key={href}>
@@ -66,10 +66,8 @@ export function SiteFooter() {
             <li className="flex gap-2">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" aria-hidden />
               <span>
-                Campus address will be updated here
-                <span className="block text-xs text-slate-400">
-                  (Share full address + landmark when ready)
-                </span>
+                KANGLATONGBI HATHIKHUWA, IMPHAL WEST, MANIPUR
+                <span className="block text-xs text-slate-500">PIN – 795136</span>
               </span>
             </li>
             <li className="flex gap-2">
@@ -114,7 +112,13 @@ export function SiteFooter() {
       <div className="border-t border-brand-200/40 bg-background">
         <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-6 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
           <p>© {new Date().getFullYear()} Radiant Star Education Centre. All rights reserved.</p>
-          <p className="text-slate-400">Phone: (03880) 266426 · Email: radiantstar12@gmail.com</p>
+          <p className="text-slate-400">
+            Phone:{" "}
+            <a className="hover:text-brand-600" href="tel:+919862669585">
+              +91 98626 69585
+            </a>{" "}
+            · Email: radiantstar12@gmail.com
+          </p>
         </div>
       </div>
     </footer>
