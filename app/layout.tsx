@@ -38,6 +38,11 @@ export const metadata: Metadata = {
     "Nursery to Class 12",
     "board exam results",
   ],
+  icons: {
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
+  },
 };
 
 export default function RootLayout({

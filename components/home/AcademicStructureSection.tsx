@@ -48,30 +48,37 @@ const CARD_BLUE_VARIANTS = [
 
 /**
  * Why: Parents need a clear academic ladder — Nursery to XII should read as intentional, not “one big block”.
- * What: Academic stage cards that become a compact horizontal scroller on mobile and return to a grid on larger screens.
+ * What: Academic stage cards that become a compact horizontal scroller on mobile and return to a grid on larger screens, displayed over a fixed background image.
  * Where: Homepage `#academics` section.
  * When: On scroll; SlideInWhenVisible triggers once per card.
  * Who: Parents mapping their child’s current grade to the right environment.
- * How: Client component; mobile uses `overflow-x-auto` + `snap` cards, `sm+` switches to grid; SlideInWhenVisible + CARD_BLUE_VARIANTS cycle.
+ * How: Section uses fixed background image with soft overlay for readability; mobile uses `overflow-x-auto` + `snap` cards, `sm+` switches to grid; SlideInWhenVisible + CARD_BLUE_VARIANTS cycle.
  */
 export function AcademicStructureSection() {
   return (
     <section
       id="academics"
-      className="border-y border-brand-200/50 bg-gradient-to-b from-background to-brand-100/35"
+      className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl border-y border-brand-200/50"
       aria-labelledby="academics-heading"
+      style={{
+        backgroundImage: "url('/images/academic-bg.png')",
+        backgroundAttachment: "fixed",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
     >
-      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/30 via-white/18 to-white/24" />
+      <div className="relative z-10 mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
         <FadeInWhenVisible>
           <div className="max-w-2xl">
             <SectionEyebrow>Academic structure</SectionEyebrow>
             <h2
               id="academics-heading"
-              className="mt-3 font-[family-name:var(--font-plus-jakarta)] text-2xl font-extrabold tracking-tight text-slate-900 sm:mt-4 sm:text-4xl"
+              className="mt-3 font-[family-name:var(--font-plus-jakarta)] text-2xl font-extrabold tracking-tight text-white [-webkit-text-stroke:1px_#1d4ed8] [paint-order:stroke_fill] sm:mt-4 sm:text-4xl"
             >
               One journey from first classroom to Class XII
             </h2>
-            <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:mt-4 sm:text-base">
+            <p className="mt-3 text-sm font-bold leading-relaxed text-white [-webkit-text-stroke:0.5px_#1d4ed8] [paint-order:stroke_fill] sm:mt-4 sm:text-base">
               Each stage has its own rhythm — from early years to board seasons.
               <span className="hidden sm:inline">
                 {" "}

@@ -61,12 +61,12 @@ export function WhyChooseSection() {
           <SectionEyebrow>Why families choose us</SectionEyebrow>
           <h2
             id="why-heading"
-            className="mt-3 font-[family-name:var(--font-plus-jakarta)] text-2xl font-extrabold tracking-tight text-slate-900 sm:mt-4 sm:text-4xl"
+            className="mt-3 font-[family-name:var(--font-plus-jakarta)] text-2xl font-extrabold tracking-tight text-white [-webkit-text-stroke:1px_#1d4ed8] [paint-order:stroke_fill] sm:mt-4 sm:text-4xl"
           >
             Trustworthy academics, vibrant campus life
           </h2>
-          <p className="mt-3 text-sm leading-relaxed text-slate-100 drop-shadow-[0_1px_1px_rgba(0,0,0,0.45)] sm:mt-4 sm:text-base">
-            <span className="font-semibold text-white">Warmth for little ones. Ambition for teens.</span>{" "}
+          <p className="mt-3 text-sm leading-relaxed text-white [-webkit-text-stroke:0.5px_#1d4ed8] [paint-order:stroke_fill] sm:mt-4 sm:text-base">
+            <span className="font-semibold text-white [-webkit-text-stroke:0.5px_#1d4ed8] [paint-order:stroke_fill]">Warmth for little ones. Ambition for teens.</span>{" "}
             <span className="hidden sm:inline">
               Radiant Star is built for families who want a school that feels approachable yet rigorous.
             </span>

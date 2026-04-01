@@ -64,11 +64,11 @@ export function FacilitiesSection() {
             <SectionEyebrow>Campus & facilities</SectionEyebrow>
             <h2
               id="facilities-heading"
-              className="mt-3 font-[family-name:var(--font-plus-jakarta)] text-2xl font-extrabold tracking-tight text-slate-900 sm:mt-4 sm:text-4xl"
+              className="mt-3 font-[family-name:var(--font-plus-jakarta)] text-2xl font-extrabold tracking-tight text-white [-webkit-text-stroke:1px_#1d4ed8] [paint-order:stroke_fill] sm:mt-4 sm:text-4xl"
             >
               Spaces that invite curiosity
             </h2>
-            <p className="mt-3 text-sm leading-relaxed text-slate-100 drop-shadow-[0_1px_1px_rgba(0,0,0,0.45)] sm:mt-4 sm:text-base">
+            <p className="mt-3 text-sm leading-relaxed text-white [-webkit-text-stroke:0.5px_#1d4ed8] [paint-order:stroke_fill] sm:mt-4 sm:text-base">
               Calm, bright, supervised spaces for every age.
               <span className="hidden sm:inline">
                 {" "}
@@ -79,7 +79,7 @@ export function FacilitiesSection() {
         </FadeInWhenVisible>
 
         <div className="mt-8 sm:mt-10">
-          <div className="mb-2 text-xs font-semibold uppercase tracking-wide text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.5)] sm:mb-3">
+          <div className="mb-2 text-xs font-semibold uppercase tracking-wide text-white [-webkit-text-stroke:0.5px_#1d4ed8] [paint-order:stroke_fill] sm:mb-3">
             <span className="md:hidden">Swipe for more →</span>
             <span className="hidden md:inline">Campus highlights</span>
           </div>
