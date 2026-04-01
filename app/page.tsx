@@ -29,8 +29,8 @@ export default function Home() {
         <ImprovementExamSection />
         <BoardResultsSection />
         <GalleryPreviewSection />
-        <DocumentsSection />
         <WhyChooseSection />
+        <DocumentsSection />
         <FacilitiesSection />
         <FeeStructureSection />
         <AcademicStructureSection />

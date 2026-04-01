@@ -38,20 +38,27 @@ const CARD_BLUE_VARIANTS = [
 
 /**
  * Why: Facilities should scan fast on phones without endless vertical scrolling.
- * What: Horizontal snap row on small viewports (next card peeks); `md+` switches to a 2×2 then 4-column grid; gradient icon wells + slide-in motion.
+ * What: Horizontal snap row on small viewports (next card peeks); `md+` switches to a 2×2 then 4-column grid; gradient icon wells + slide-in motion over a fixed background image.
  * Where: Homepage `#facilities`.
  * When: On scroll into view; motion respects reduced motion via `SlideInWhenVisible`.
  * Who: Parents comparing campus infrastructure.
- * How: `flex` + `snap-x` + hidden scrollbar on mobile; `md:grid md:grid-cols-2 lg:grid-cols-4` on larger breakpoints.
+ * How: Section uses a fixed background image with a light overlay for readability; `flex` + `snap-x` + hidden scrollbar on mobile; `md:grid md:grid-cols-2 lg:grid-cols-4` on larger breakpoints.
  */
 export function FacilitiesSection() {
   return (
     <section
       id="facilities"
-      className="border-y border-brand-200/50 bg-background"
+      className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl border-y border-brand-200/50"
       aria-labelledby="facilities-heading"
+      style={{
+        backgroundImage: "url('/images/facilities-bg.png')",
+        backgroundAttachment: "fixed",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
     >
-      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/22 via-white/12 to-white/18" />
+      <div className="relative z-10 mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
         <FadeInWhenVisible>
           <div className="max-w-2xl">
             <SectionEyebrow>Campus & facilities</SectionEyebrow>
@@ -61,7 +68,7 @@ export function FacilitiesSection() {
             >
               Spaces that invite curiosity
             </h2>
-            <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:mt-4 sm:text-base">
+            <p className="mt-3 text-sm leading-relaxed text-slate-100 drop-shadow-[0_1px_1px_rgba(0,0,0,0.45)] sm:mt-4 sm:text-base">
               Calm, bright, supervised spaces for every age.
               <span className="hidden sm:inline">
                 {" "}
@@ -72,7 +79,7 @@ export function FacilitiesSection() {
         </FadeInWhenVisible>
 
         <div className="mt-8 sm:mt-10">
-          <div className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:mb-3">
+          <div className="mb-2 text-xs font-semibold uppercase tracking-wide text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.5)] sm:mb-3">
             <span className="md:hidden">Swipe for more →</span>
             <span className="hidden md:inline">Campus highlights</span>
           </div>

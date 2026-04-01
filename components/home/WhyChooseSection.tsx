@@ -35,19 +35,27 @@ const CARD_BLUE_VARIANTS = [
 
 /**
  * Why: Parents compare schools quickly — we must answer “why here?” with crisp proof points, not essays.
- * What: Four highlight cards with blue shade variants, left/right trending entrance animation, and subtle shimmer highlight; cards switch to mobile horizontal swipe.
+ * What: Four highlight cards with blue shade variants, left/right trending entrance animation, subtle shimmer highlight, and a fixed section background image.
  * Where: Homepage section `#why-us`, after the hero.
  * When: As users scroll; cards slide in from alternating sides, then shimmer appears on hover.
  * Who: Prospective families evaluating fit.
- * How: Static data array mapped to cards; mobile uses `overflow-x-auto` + snap while `sm+` uses grid; `SlideInWhenVisible` handles motion and a gradient overlay adds shimmer.
+ * How: Static data array mapped to cards; section uses a fixed background image with a soft white overlay for readability; mobile uses `overflow-x-auto` + snap while `sm+` uses grid; `SlideInWhenVisible` handles motion and a gradient overlay adds shimmer.
  */
 export function WhyChooseSection() {
   return (
     <section
       id="why-us"
-      className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-20"
+      className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-20"
       aria-labelledby="why-heading"
+      style={{
+        backgroundImage: "url('/images/why-us-bg.png')",
+        backgroundAttachment: "fixed",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
     >
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/30 via-white/22 to-white/28" />
+      <div className="relative z-10">
       <FadeInWhenVisible>
         <div className="max-w-2xl">
           <SectionEyebrow>Why families choose us</SectionEyebrow>
@@ -57,8 +65,8 @@ export function WhyChooseSection() {
           >
             Trustworthy academics, vibrant campus life
           </h2>
-          <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:mt-4 sm:text-base">
-            <span className="font-semibold text-slate-800">Warmth for little ones. Ambition for teens.</span>{" "}
+          <p className="mt-3 text-sm leading-relaxed text-slate-100 drop-shadow-[0_1px_1px_rgba(0,0,0,0.45)] sm:mt-4 sm:text-base">
+            <span className="font-semibold text-white">Warmth for little ones. Ambition for teens.</span>{" "}
             <span className="hidden sm:inline">
               Radiant Star is built for families who want a school that feels approachable yet rigorous.
             </span>
@@ -98,6 +106,7 @@ export function WhyChooseSection() {
             </SlideInWhenVisible>
           );
         })}
+      </div>
       </div>
       </div>
     </section>

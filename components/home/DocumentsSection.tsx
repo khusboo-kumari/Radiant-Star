@@ -36,7 +36,6 @@ type DocumentItem = {
   description: string;
   href: string;
   icon: typeof FileDown;
-  cta: string;
 };
 
 /** Blue shade variants for document cards — cycles for a Lovable-style, varied grid. */
@@ -66,7 +65,6 @@ const DOCUMENTS: DocumentItem[] = [
       "Official stage-wise fee circular for the current session. Also linked from the Fees section.",
     icon: FileDown,
     href: FEE_STRUCTURE_2025_26_PDF,
-    cta: "Download PDF",
   },
   {
     id: "calendar",
@@ -74,7 +72,6 @@ const DOCUMENTS: DocumentItem[] = [
     description: "Term dates, exam windows, holidays, and key school events for the session.",
     icon: CalendarDays,
     href: ACADEMIC_CALENDAR_2026_27_PDF,
-    cta: "Download PDF",
   },
   {
     id: "management",
@@ -82,7 +79,6 @@ const DOCUMENTS: DocumentItem[] = [
     description: "Composition and constitution of the school management committee as per norms.",
     icon: Building2,
     href: MANAGEMENT_COMMITTEE_PDF,
-    cta: "Download PDF",
   },
   {
     id: "noc",
@@ -90,7 +86,6 @@ const DOCUMENTS: DocumentItem[] = [
     description: "No Objection Certificate and related affiliation / compliance documentation.",
     icon: Scale,
     href: NOC_PDF,
-    cta: "Download PDF",
   },
   {
     id: "water",
@@ -98,7 +93,6 @@ const DOCUMENTS: DocumentItem[] = [
     description: "Safe drinking water and sanitation compliance certificate on record.",
     icon: Droplets,
     href: WATER_SANITARY_CERTIFICATE_PDF,
-    cta: "Download PDF",
   },
   {
     id: "pta",
@@ -106,7 +100,6 @@ const DOCUMENTS: DocumentItem[] = [
     description: "Parent–Teacher Association circulars, constitution, or meeting notices.",
     icon: Users,
     href: PTA_PDF,
-    cta: "Download PDF",
   },
   {
     id: "fire",
@@ -114,7 +107,6 @@ const DOCUMENTS: DocumentItem[] = [
     description: "Fire safety inspection / certificate valid for the noted period.",
     icon: Flame,
     href: FIRE_SAFETY_2026_PDF,
-    cta: "Download PDF",
   },
   {
     id: "registration-msr",
@@ -123,7 +115,6 @@ const DOCUMENTS: DocumentItem[] = [
       "Society registration under M.S.R. Act, 1989. Regd. No. 2475 / Imphal District (duplicate on file).",
     icon: ScrollText,
     href: REGISTRATION_CERTIFICATE_MSR_1992_PNG,
-    cta: "Download scan",
   },
   {
     id: "building-safety",
@@ -132,7 +123,6 @@ const DOCUMENTS: DocumentItem[] = [
       "P.W.D. inspection certifying the institutional building safe for educational use (CBSE & state recognition refs on document).",
     icon: ShieldCheck,
     href: BUILDING_SAFETY_CERTIFICATE_2026_PNG,
-    cta: "Download scan",
   },
   {
     id: "recognition-order",
@@ -141,7 +131,6 @@ const DOCUMENTS: DocumentItem[] = [
       "Director of Education (S) order granting provisional recognition (Nursery to VII) with conditions as stated.",
     icon: Award,
     href: GOVERNMENT_RECOGNITION_ORDER_2004_PNG,
-    cta: "Download scan",
   },
   {
     id: "cbse-extension",
@@ -150,7 +139,6 @@ const DOCUMENTS: DocumentItem[] = [
       "SARAS letter: extension of general affiliation up to Senior Secondary (Affiliation No. 1230038, School No. 35305, period on letter).",
     icon: GraduationCap,
     href: CBSE_AFFILIATION_EXTENSION_2022_27_PNG,
-    cta: "Download scan",
   },
 ];
 
@@ -241,10 +229,11 @@ export function DocumentsSection() {
                       <div className="mt-6">
                         <a
                           href={doc.href}
-                          download
-                          className="inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-brand-600 to-sky-500 px-5 py-2.5 text-sm font-bold text-white shadow-md shadow-brand-500/20 transition hover:brightness-105 hover:shadow-lg sm:w-auto"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-brand-600 to-sky-500 px-4 py-1.5 text-xs font-bold text-white shadow-md shadow-brand-500/20 transition hover:brightness-105 hover:shadow-lg"
                         >
-                          {doc.cta}
+                          Click here
                         </a>
                       </div>
                     </article>
