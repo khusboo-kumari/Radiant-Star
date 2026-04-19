@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
-import { CalendarDays } from "lucide-react";
+import { Trophy } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -154,11 +154,11 @@ export function HeroSection() {
               Explore Academics
             </Link>
             <Link
-              href="#exam-schedule"
+              href="#class-x-toppers"
               className="inline-flex w-full max-w-[18.5rem] items-center justify-center gap-2 rounded-full border-2 border-white bg-white/95 px-5 py-3 text-sm font-bold text-slate-800 shadow-md shadow-black/15 transition hover:bg-white sm:w-auto sm:max-w-none"
             >
-              <CalendarDays className="h-4 w-4 shrink-0 opacity-90" aria-hidden />
-              Apr &apos;26 improvement exams
+              <Trophy className="h-4 w-4 shrink-0 opacity-90" aria-hidden />
+              2025–26 Class X toppers
             </Link>
           </div>
 

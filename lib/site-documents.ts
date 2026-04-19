@@ -30,6 +30,3 @@ export const GOVERNMENT_RECOGNITION_ORDER_2004_PNG =
 export const CBSE_AFFILIATION_EXTENSION_2022_27_PNG =
   "/documents/cbse-affiliation-extension-2022-27.png" as const;
 
-/** Improvement exam routine (Apr 2026) — scanned circular PNG. */
-export const IMPROVEMENT_EXAM_ROUTINE_APRIL_2026_PNG =
-  "/documents/improvement-exam-routine-april-2026.png" as const;

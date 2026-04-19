@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { Banknote, CalendarDays, FolderOpen, Home, Phone } from "lucide-react";
+import { Banknote, FolderOpen, Home, Phone, Sparkles } from "lucide-react";
 
 const ITEMS = [
   { href: "#top", label: "Home", icon: Home },
-  { href: "#exam-schedule", label: "Exams", icon: CalendarDays },
+  { href: "#class-x-toppers", label: "Toppers", icon: Sparkles },
   { href: "#fee-structure", label: "Fees", icon: Banknote },
   { href: "#documents", label: "Disclosure", icon: FolderOpen },
   { href: "tel:+919862669585", label: "Call", icon: Phone },
@@ -14,7 +14,7 @@ const ITEMS = [
  * What: Fixed bottom bar with five icon+label targets (hidden from `lg` where the full header suffices).
  * Where: Rendered once in `app/page.tsx` beside header/footer; `main` gets bottom padding so content clears it.
  * When: Always visible on small/medium viewports while the homepage is open.
- * Who: Mobile parents jumping to exams, fees, documents, or calling the school (full nav stays in the menu).
+ * Who: Mobile parents jumping to toppers, fees, documents, or calling the school (full nav stays in the menu).
  * How: Plain links with Lucide icons, safe-area padding, and high-contrast glass styling.
  */
 export function MobileQuickNav() {

@@ -2,7 +2,6 @@
 
 import {
   Building2,
-  CalendarDays,
   FolderOpen,
   GraduationCap,
   Heart,
@@ -25,7 +24,7 @@ const NAV_LINKS = [
   { href: "#facilities", label: "Facilities", icon: Building2 },
   { href: "#gallery", label: "Gallery", icon: ImageIcon },
   { href: "#documents", label: "Mandatory Public Disclosure", icon: FolderOpen },
-  { href: "#exam-schedule", label: "Exams", icon: CalendarDays },
+  { href: "#class-x-toppers", label: "Class X Toppers", icon: Sparkles },
 ] as const;
 
 /**

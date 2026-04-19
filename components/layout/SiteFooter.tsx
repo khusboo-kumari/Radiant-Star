@@ -44,7 +44,7 @@ export function SiteFooter() {
               ["Facilities", "#facilities"],
               ["Gallery", "#gallery"],
               ["Mandatory Public Disclosure", "#documents"],
-              ["Exam schedule", "#exam-schedule"],
+              ["Class X toppers", "#class-x-toppers"],
             ].map(([label, href]) => (
               <li key={href}>
                 <Link
